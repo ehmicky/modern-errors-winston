@@ -13,7 +13,7 @@ import {
   unknownError,
   warnError,
   noStackError,
-  yesStackError,
+  stackError,
 } from './helpers/main.js'
 
 const { transform } = AnyError.fullFormat()
@@ -24,7 +24,7 @@ each([noStackError, knownError], ({ title }, error) => {
   })
 })
 
-each([unknownError, yesStackError], ({ title }, error) => {
+each([unknownError, stackError], ({ title }, error) => {
   test(`Use the stack if "stack" is true | ${title}`, (t) => {
     t.is(transform(error).stack, error.stack)
   })

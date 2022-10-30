@@ -17,7 +17,7 @@ export const warnError = new TestError('test', {
   winston: { level: testLevel },
 })
 export const noStackError = new TestError('test', { winston: { stack: false } })
-export const yesStackError = new TestError('test', { winston: { stack: true } })
+export const stackError = new TestError('test', { winston: { stack: true } })
 
 export const shortLog = function (value) {
   shortLogger.error(value)

@@ -10,7 +10,7 @@ import {
   unknownError,
   warnError,
   noStackError,
-  yesStackError,
+  stackError,
 } from './helpers/main.js'
 
 const { transform } = AnyError.shortFormat()
@@ -29,7 +29,7 @@ each([noStackError, knownError], ({ title }, error) => {
   })
 })
 
-each([yesStackError, unknownError], ({ title }, error) => {
+each([stackError, unknownError], ({ title }, error) => {
   test(`Use the stack if "stack" is true | ${title}`, (t) => {
     t.is(transform(error).message, error.stack)
   })
