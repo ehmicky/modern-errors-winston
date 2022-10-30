@@ -11,8 +11,9 @@
 
 `modern-errors` plugin for Winston.
 
-This adds `AnyError.fullFormat()` and `AnyError.shortFormat()` which return a
-format to improve error logging with Winston.
+This adds [`AnyError.fullFormat()`](#anyerrorfullformat) and
+[`AnyError.shortFormat()`](#anyerrorshortformat) which return a format to
+improve error logging with [Winston](https://github.com/winstonjs/winston).
 
 # Features
 
@@ -106,13 +107,17 @@ Errors should be logged using
 
 _Return value_: `Format`
 
-Alternatively, this format can be used instead
-[combined](https://github.com/winstonjs/winston#combining-formats) with
+Returns a logger
+[`format`](https://github.com/winstonjs/winston/blob/master/README.md#formats)
+to [combine](https://github.com/winstonjs/winston#combining-formats) with
 [`format.simple()`](https://github.com/winstonjs/logform#simple) or
 [`format.cli()`](https://github.com/winstonjs/logform#cli). This logs only the
 error name, message and stack, making it useful with
 [transports](https://github.com/winstonjs/winston#transports) like the
 [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
+
+Errors should be logged using
+[`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
 
 ## Options
 

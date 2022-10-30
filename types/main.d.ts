@@ -32,25 +32,23 @@ export interface Options {
 
 /**
  * `modern-errors-winston` plugin (Node.js only).
- *
- * Errors can be logged with [Winston](https://github.com/winstonjs/winston)
- * using
- * [`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
  */
 declare const plugin: {
   name: 'winston'
   getOptions: (input: Options) => Options
   staticMethods: {
     /**
-     * The logger
+     * Returns a logger
      * [`format`](https://github.com/winstonjs/winston/blob/master/README.md#formats)
-     * must be `AnyError.fullFormat()`
-     * [combined](https://github.com/winstonjs/winston#combining-formats) with
+     * to [combine](https://github.com/winstonjs/winston#combining-formats) with
      * [`format.json()`](https://github.com/winstonjs/logform#json) or
      * [`format.prettyPrint()`](https://github.com/winstonjs/logform#prettyprint).
      * This logs all error properties, making it useful with
      * [transports](https://github.com/winstonjs/winston#transports) like
      * [HTTP](https://github.com/winstonjs/winston/blob/master/docs/transports.md#http-transport).
+     *
+     * Errors should be logged using
+     * [`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
      *
      * @example
      * ```js
@@ -77,13 +75,17 @@ declare const plugin: {
     fullFormat: (info: Info['staticMethods']) => Format
 
     /**
-     * `AnyError.shortFormat()` can be used
-     * [combined](https://github.com/winstonjs/winston#combining-formats) with
+     * Returns a logger
+     * [`format`](https://github.com/winstonjs/winston/blob/master/README.md#formats)
+     * to [combine](https://github.com/winstonjs/winston#combining-formats) with
      * [`format.simple()`](https://github.com/winstonjs/logform#simple) or
      * [`format.cli()`](https://github.com/winstonjs/logform#cli). This logs
      * only the error name, message and stack, making it useful with
      * [transports](https://github.com/winstonjs/winston#transports) like the
      * [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
+     *
+     * Errors should be logged using
+     * [`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
      *
      * @example
      * ```js
