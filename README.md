@@ -23,7 +23,6 @@ improve error logging with [Winston](https://github.com/winstonjs/winston).
 [`modern-errors`](https://github.com/ehmicky/modern-errors).
 
 ```js
-// `errors.js`
 import modernErrors from 'modern-errors'
 import modernErrorsWinston from 'modern-errors-winston'
 
