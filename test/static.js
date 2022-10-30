@@ -11,7 +11,7 @@ import {
   testLevel,
   shortLog,
   fullLog,
-} from '../../helpers/winston.js'
+} from './helpers/main.js'
 
 test.serial('Log known errors with shortFormat', (t) => {
   const error = new TestError('test', { winston: { level: testLevel } })

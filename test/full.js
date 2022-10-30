@@ -14,7 +14,7 @@ import {
   warnError,
   noStackError,
   yesStackError,
-} from '../../helpers/winston.js'
+} from './helpers/main.js'
 
 const { transform } = AnyError.fullFormat()
 

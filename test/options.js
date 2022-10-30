@@ -1,7 +1,7 @@
 import test from 'ava'
 import { each } from 'test-each'
 
-import { TestError, AnyError, testLevel } from '../../helpers/winston.js'
+import { TestError, AnyError, testLevel } from './helpers/main.js'
 
 each(
   [

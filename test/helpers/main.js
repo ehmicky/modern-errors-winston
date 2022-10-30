@@ -1,13 +1,12 @@
+import modernErrors from 'modern-errors'
+import modernErrorsWinston from 'modern-errors-winston'
 import through from 'through2'
 import { MESSAGE } from 'triple-beam'
 import { createLogger, transports, format } from 'winston'
 
-// eslint-disable-next-line no-restricted-imports
-import WINSTON_PLUGIN from '../../src/core_plugins/winston/main.js'
-
-import { defineClassOpts } from './main.js'
-
-export const { TestError, AnyError } = defineClassOpts({}, {}, [WINSTON_PLUGIN])
+export const AnyError = modernErrors([modernErrorsWinston])
+AnyError.subclass('UnknownError')
+export const TestError = AnyError.subclass('TestError')
 
 export const defaultLevel = 'error'
 export const testLevel = 'warn'
