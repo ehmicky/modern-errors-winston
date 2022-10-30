@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ehmicky/design/main/modern-errors/modern-errors_dark.svg"/>
+  <img alt="modern-errors logo" src="https://raw.githubusercontent.com/ehmicky/design/main/modern-errors/modern-errors.svg" width="600"/>
+</picture>
+
 [![Codecov](https://img.shields.io/codecov/c/github/ehmicky/modern-errors-winston.svg?label=tested&logo=codecov)](https://codecov.io/gh/ehmicky/modern-errors-winston)
 [![TypeScript](https://img.shields.io/badge/-typed-brightgreen?logo=typescript&colorA=gray&logoColor=0096ff)](/types/main.d.ts)
 [![Node](https://img.shields.io/node/v/modern-errors-winston.svg?logo=node.js&logoColor=66cc33)](https://www.npmjs.com/package/modern-errors-winston)
@@ -6,14 +11,60 @@
 
 `modern-errors` plugin for Winston.
 
-Work in progress!
+This adds `AnyError.fullFormat()` and `AnyError.shortFormat()` which return a
+format to improve error logging with Winston.
 
 # Features
 
 # Example
 
+[Adding the plugin](https://github.com/ehmicky/modern-errors#adding-plugins) to
+[`modern-errors`](https://github.com/ehmicky/modern-errors).
+
 ```js
+// `errors.js`
+import modernErrors from 'modern-errors'
 import modernErrorsWinston from 'modern-errors-winston'
+
+export const AnyError = modernErrors([modernErrorsWinston])
+// ...
+```
+
+Full
+
+```js
+import { createLogger, transports, format } from 'winston'
+
+const logger = createLogger({
+  transports: [new transports.Http(httpOptions)],
+  format: format.combine(AnyError.fullFormat(), format.json()),
+})
+
+const error = new InputError('Could not read file.', { props: { filePath } })
+logger.error(error)
+// Sent via HTTP:
+// {
+//   level: 'error',
+//   name: 'InputError',
+//   message: 'Could not read file.',
+//   stack: `InputError: Could not read file.
+//     at ...`,
+//   filePath: '/...',
+// }
+```
+
+Short
+
+```js
+const logger = createLogger({
+  transports: [new transports.Console()],
+  format: format.combine(AnyError.shortFormat(), format.cli()),
+})
+
+const error = new InputError('Could not read file.', { props: { filePath } })
+logger.error(error)
+// error:   InputError: Could not read file.
+//     at ...
 ```
 
 # Install
@@ -22,25 +73,114 @@ import modernErrorsWinston from 'modern-errors-winston'
 npm install modern-errors-winston
 ```
 
-This package is an ES module and must be loaded using
+This package requires Node.js. It is an ES module and must be loaded using
 [an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
 not `require()`.
 
 # API
 
-## modernErrorsWinston(value, options?)
+## modernErrorsWinston
 
-`value` `any`\
-`options` [`Options?`](#options)\
-_Return value_: [`object`](#return-value)
+_Type_: `Plugin`
 
-### Options
+Plugin object to
+[pass to `modernErrors()`](https://github.com/ehmicky/modern-errors#adding-plugins).
 
-Object with the following properties.
+## AnyError.fullFormat()
 
-### Return value
+_Return value_: `Format`
 
-Object with the following properties.
+Returns a logger
+[`format`](https://github.com/winstonjs/winston/blob/master/README.md#formats)
+to [combine](https://github.com/winstonjs/winston#combining-formats) with
+[`format.json()`](https://github.com/winstonjs/logform#json) or
+[`format.prettyPrint()`](https://github.com/winstonjs/logform#prettyprint). This
+logs all error properties, making it useful with
+[transports](https://github.com/winstonjs/winston#transports) like
+[HTTP](https://github.com/winstonjs/winston/blob/master/docs/transports.md#http-transport).
+
+Errors should be logged using
+[`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+
+## AnyError.shortFormat()
+
+_Return value_: `Format`
+
+Alternatively, this format can be used instead
+[combined](https://github.com/winstonjs/winston#combining-formats) with
+[`format.simple()`](https://github.com/winstonjs/logform#simple) or
+[`format.cli()`](https://github.com/winstonjs/logform#cli). This logs only the
+error name, message and stack, making it useful with
+[transports](https://github.com/winstonjs/winston#transports) like the
+[console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
+
+## Options
+
+_Type_: `object`
+
+### level
+
+_Type_: `string`\
+_Default_: `error`
+
+Log [level](https://github.com/winstonjs/winston#logging-levels).
+
+### stack
+
+_Type_: `boolean`
+
+Whether to log the stack trace.
+
+By default, this is `true` if the error (or one of its
+[inner](https://github.com/ehmicky/modern-errors/README.md#wrap-errors) errors)
+is
+[_unknown_](https://github.com/ehmicky/modern-errors/README.md#unknown-errors),
+and `false` otherwise.
+
+## Configuration
+
+[Options](#options) can apply to (in priority order):
+
+- Any error: second argument to
+  [`modernErrors()`](https://github.com/ehmicky/modern-errors#modernerrorsplugins-options)
+
+```js
+export const AnyError = modernErrors(plugins, { winston: { ...options } })
+```
+
+- Any error of multiple classes: using
+  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+
+```js
+export const SharedError = AnyError.subclass('SharedError', {
+  winston: { ...options },
+})
+
+export const InputError = SharedError.subclass('InputError')
+export const AuthError = SharedError.subclass('AuthError')
+```
+
+- Any error of a specific class: second argument to
+  [`AnyError.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+
+```js
+export const InputError = AnyError.subclass('InputError', {
+  winston: { ...options },
+})
+```
+
+- A specific error: second argument to the error's constructor
+
+```js
+throw new InputError('...', { winston: { ...options } })
+```
+
+- A specific [`AnyError.fullFormat()`](#anyerrorfullformat) or
+  [`AnyError.shortFormat()`](#anyerrorshortformat) call
+
+```js
+AnyError.fullFormat(...args, { ...options })
+```
 
 # Related projects
 
