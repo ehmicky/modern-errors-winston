@@ -20,6 +20,15 @@ improve error logging with Winston.
 
 # Features
 
+- [Error class/instance-specific](#configuration) log [level](#level) or
+  [verbosity](#stack)
+- The [short format](#anyerrorshortformat) includes only the error's name,
+  message and stack
+- The [full format](#anyerrorfullformat) includes all properties
+- Prevents Winston from modifying the error instance
+- Works with
+  [uncaught exceptions](https://github.com/winstonjs/winston#exceptions)
+
 # Example
 
 [Adding the plugin](https://github.com/ehmicky/modern-errors#adding-plugins) to

@@ -3,8 +3,6 @@
 // `errors` and additional properties are ignored.
 // It is meant for transports which operates on strings like `console`.
 // We make sure to return new objects since `logform` directly mutates.
-// Instance methods are needed to retrieve `error`, `showStack` and `options`,
-// but are undocumented.
 export const toShortLogObject = function ({ error, level, stack }) {
   const message = getShortMessage(error, stack)
   return { level, message }
