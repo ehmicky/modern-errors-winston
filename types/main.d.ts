@@ -1,6 +1,6 @@
 import type { Format } from 'logform'
 
-import type { Info } from '../main.js'
+import type { Info } from 'modern-errors'
 
 /**
  * Winston format.
