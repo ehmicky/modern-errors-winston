@@ -16,7 +16,28 @@
     "test": "gulp test"
   },
   "description": "`modern-errors` plugin for Winston",
-  "keywords": [],
+  "keywords": [
+    "browser",
+    "console",
+    "error",
+    "error-handler",
+    "error-handling",
+    "error-monitoring",
+    "http",
+    "javascript",
+    "library",
+    "logger",
+    "logger-middleware",
+    "logging",
+    "modern-errors",
+    "modern-errors-plugin",
+    "nodejs",
+    "plugins",
+    "typescript",
+    "winston",
+    "winston-logger",
+    "winstonjs"
+  ],
   "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/modern-errors-winston",
   "repository": "ehmicky/modern-errors-winston",
@@ -28,9 +49,19 @@
     "lib": "src",
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "error-serializer": "^3.5.1",
+    "filter-obj": "^5.1.0",
+    "is-error-instance": "^1.1.0",
+    "is-plain-obj": "^4.1.0",
+    "logform": "^2.4.2",
+    "safe-json-value": "^1.8.0",
+    "triple-beam": "^1.3.0"
+  },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^1.0.98"
+    "@ehmicky/dev-tasks": "^1.0.98",
+    "through2": "^4.0.2",
+    "winston": "^3.8.2"
   },
   "engines": {
     "node": ">=14.18.0"
