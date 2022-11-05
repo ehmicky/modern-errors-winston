@@ -98,6 +98,7 @@ declare const plugin: {
      *
      * const error = new InputError('Could not read file.', { props: { filePath } })
      * logger.error(error)
+     * // Printed on the console:
      * // error:   InputError: Could not read file.
      * //     at ...
      * ```
