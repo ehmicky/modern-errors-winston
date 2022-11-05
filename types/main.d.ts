@@ -48,7 +48,7 @@ declare const plugin: {
      * [HTTP](https://github.com/winstonjs/winston/blob/master/docs/transports.md#http-transport).
      *
      * Errors should be logged using
-     * [`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+     * [`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
      *
      * @example
      * ```js
@@ -85,7 +85,7 @@ declare const plugin: {
      * [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
      *
      * Errors should be logged using
-     * [`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+     * [`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
      *
      * @example
      * ```js

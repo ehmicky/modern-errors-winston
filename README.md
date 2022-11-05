@@ -114,7 +114,7 @@ logs all error properties, making it useful with
 [HTTP](https://github.com/winstonjs/winston/blob/master/docs/transports.md#http-transport).
 
 Errors should be logged using
-[`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+[`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
 
 ## AnyError.shortFormat()
 
@@ -130,7 +130,7 @@ error name, message and stack, making it useful with
 [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
 
 Errors should be logged using
-[`winston.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+[`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
 
 ## Options
 
@@ -139,7 +139,7 @@ _Type_: `object`
 ### level
 
 _Type_: `string`\
-_Default_: `error`
+_Default_: `'error'`
 
 Log [level](https://github.com/winstonjs/winston#logging-levels).
 
