@@ -59,6 +59,8 @@ logger.error(error)
 Using the [short format](#anyerrorshortformat) with Winston.
 
 ```js
+import { createLogger, transports, format } from 'winston'
+
 const logger = createLogger({
   transports: [new transports.Console()],
   format: format.combine(AnyError.shortFormat(), format.cli()),
