@@ -80,9 +80,14 @@ logger.error(error)
 npm install modern-errors-winston
 ```
 
-This package requires Node.js and
-[Winston](https://github.com/winstonjs/winston). It is an ES module and must be
-loaded using
+This package requires installing [Winston](https://github.com/winstonjs/winston)
+separately.
+
+```bash
+npm install winston
+```
+
+This is an ES module and must be loaded using
 [an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
 not `require()`.
 
