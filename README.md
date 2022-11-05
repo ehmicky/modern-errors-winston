@@ -31,6 +31,7 @@ import modernErrorsWinston from 'modern-errors-winston'
 
 export const AnyError = modernErrors([modernErrorsWinston])
 // ...
+export const InputError = AnyError.subclass('InputError')
 ```
 
 Using the [full format](#anyerrorfullformat) with Winston.
@@ -39,8 +40,8 @@ Using the [full format](#anyerrorfullformat) with Winston.
 import { createLogger, transports, format } from 'winston'
 
 const logger = createLogger({
-  transports: [new transports.Http(httpOptions)],
   format: format.combine(AnyError.fullFormat(), format.json()),
+  transports: [new transports.Http(httpOptions)],
 })
 
 const error = new InputError('Could not read file.', { props: { filePath } })
@@ -62,8 +63,8 @@ Using the [short format](#anyerrorshortformat) with Winston.
 import { createLogger, transports, format } from 'winston'
 
 const logger = createLogger({
-  transports: [new transports.Console()],
   format: format.combine(AnyError.shortFormat(), format.cli()),
+  transports: [new transports.Console()],
 })
 
 const error = new InputError('Could not read file.', { props: { filePath } })

@@ -55,8 +55,8 @@ declare const plugin: {
      * import { createLogger, transports, format } from 'winston'
      *
      * const logger = createLogger({
-     *   transports: [new transports.Http(httpOptions)],
      *   format: format.combine(AnyError.fullFormat(), format.json()),
+     *   transports: [new transports.Http(httpOptions)],
      * })
      *
      * const error = new InputError('Could not read file.', { props: { filePath } })
@@ -89,9 +89,11 @@ declare const plugin: {
      *
      * @example
      * ```js
+     * import { createLogger, transports, format } from 'winston'
+     *
      * const logger = createLogger({
-     *   transports: [new transports.Console()],
      *   format: format.combine(AnyError.shortFormat(), format.cli()),
+     *   transports: [new transports.Console()],
      * })
      *
      * const error = new InputError('Could not read file.', { props: { filePath } })
