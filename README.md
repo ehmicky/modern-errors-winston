@@ -10,11 +10,13 @@
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 
 [`modern-errors`](https://github.com/ehmicky/modern-errors)
-[plugin](https://github.com/ehmicky/modern-errors#plugins-1) for Winston.
+[plugin](https://github.com/ehmicky/modern-errors#plugins-1) for
+[Winston](https://github.com/winstonjs/winston).
 
 This adds [`AnyError.fullFormat()`](#anyerrorfullformat) and
-[`AnyError.shortFormat()`](#anyerrorshortformat) which return a format to
-improve error logging with [Winston](https://github.com/winstonjs/winston).
+[`AnyError.shortFormat()`](#anyerrorshortformat) which return a
+[format](https://github.com/winstonjs/winston/blob/master/README.md#formats) to
+improve error logging with Winston.
 
 # Features
 
@@ -31,7 +33,7 @@ export const AnyError = modernErrors([modernErrorsWinston])
 // ...
 ```
 
-Full
+Using the [full format](#anyerrorfullformat) with Winston.
 
 ```js
 import { createLogger, transports, format } from 'winston'
@@ -54,7 +56,7 @@ logger.error(error)
 // }
 ```
 
-Short
+Using the [short format](#anyerrorshortformat) with Winston.
 
 ```js
 const logger = createLogger({
