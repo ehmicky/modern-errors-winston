@@ -61,11 +61,11 @@
   "devDependencies": {
     "@ehmicky/dev-tasks": "^1.0.98",
     "test-each": "^5.4.1",
-    "through2": "^4.0.2",
-    "winston": "^3.8.2"
+    "through2": "^4.0.2"
   },
   "peerDependencies": {
-    "modern-errors": "^4.0.0-beta.3"
+    "modern-errors": "^4.0.0-beta.3",
+    "winston": "^3.8.2"
   },
   "engines": {
     "node": ">=14.18.0"

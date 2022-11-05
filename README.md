@@ -70,7 +70,7 @@ const logger = createLogger({
 const error = new InputError('Could not read file.', { props: { filePath } })
 logger.error(error)
 // Printed on the console:
-// error:   InputError: Could not read file.
+// error: InputError: Could not read file.
 //     at ...
 ```
 
@@ -80,7 +80,9 @@ logger.error(error)
 npm install modern-errors-winston
 ```
 
-This package requires Node.js. It is an ES module and must be loaded using
+This package requires Node.js and
+[Winston](https://github.com/winstonjs/winston). It is an ES module and must be
+loaded using
 [an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
 not `require()`.
 
