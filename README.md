@@ -10,7 +10,7 @@
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 
 [`modern-errors`](https://github.com/ehmicky/modern-errors)
-[plugin](https://github.com/ehmicky/modern-errors#plugins-1) for
+[plugin](https://github.com/ehmicky/modern-errors#-plugins) for
 [Winston](https://github.com/winstonjs/winston).
 
 This adds [`AnyError.fullFormat()`](#anyerrorfullformat) and
@@ -159,9 +159,9 @@ _Type_: `boolean`
 Whether to log the stack trace.
 
 By default, this is `true` if the error (or one of its
-[inner](https://github.com/ehmicky/modern-errors/README.md#wrap-errors) errors)
+[inner](https://github.com/ehmicky/modern-errors/README.md#-wrap-errors) errors)
 is
-[_unknown_](https://github.com/ehmicky/modern-errors/README.md#unknown-errors),
+[_unknown_](https://github.com/ehmicky/modern-errors/README.md#-unknown-errors),
 and `false` otherwise.
 
 ## Configuration
