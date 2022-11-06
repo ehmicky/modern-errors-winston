@@ -12,12 +12,10 @@ export const defaultLevel = 'error'
 export const testLevel = 'warn'
 
 export const knownError = new TestError('test')
-export const unknownError = new AnyError('test', { cause: '' })
 export const warnError = new TestError('test', {
   winston: { level: testLevel },
 })
 export const noStackError = new TestError('test', { winston: { stack: false } })
-export const stackError = new TestError('test', { winston: { stack: true } })
 
 export const shortLog = function (value) {
   shortLogger.error(value)

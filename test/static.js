@@ -13,25 +13,29 @@ import {
   fullLog,
 } from './helpers/main.js'
 
-test.serial('Log known errors with shortFormat', (t) => {
-  const error = new TestError('test', { winston: { level: testLevel } })
+test.serial('Log stack-less errors with shortFormat', (t) => {
+  const error = new TestError('test', {
+    winston: { stack: false, level: testLevel },
+  })
   t.is(shortLog(error), `${testLevel}: ${error.name}: ${error.message}`)
 })
 
-test.serial('Log known errors with fullFormat', (t) => {
-  const error = new TestError('test', { winston: { level: testLevel } })
+test.serial('Log stack-less errors with fullFormat', (t) => {
+  const error = new TestError('test', {
+    winston: { stack: false, level: testLevel },
+  })
   const { name, message } = error
   t.deepEqual(fullLog(error), { level: testLevel, name, message })
 })
 
-each([Error, runInNewContext('Error')], ({ title }, ErrorClass) => {
-  test.serial(`Log unknown errors with shortFormat | ${title}`, (t) => {
+each([Error, runInNewContext('Error'), TestError], ({ title }, ErrorClass) => {
+  test.serial(`Log stack-full errors with shortFormat | ${title}`, (t) => {
     const error = new ErrorClass('test')
     const { stack } = AnyError.normalize(error)
     t.is(shortLog(error), `${defaultLevel}: ${stack}`)
   })
 
-  test.serial(`Log unknown errors with fullFormat | ${title}`, (t) => {
+  test.serial(`Log stack-full errors with fullFormat | ${title}`, (t) => {
     const error = new ErrorClass('test')
     const { name, message, stack } = AnyError.normalize(error)
     t.deepEqual(fullLog(error), { level: defaultLevel, name, message, stack })

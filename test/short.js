@@ -7,10 +7,8 @@ import {
   defaultLevel,
   testLevel,
   knownError,
-  unknownError,
   warnError,
   noStackError,
-  stackError,
 } from './helpers/main.js'
 
 const { transform } = AnyError.shortFormat()
@@ -23,21 +21,20 @@ test('Can set other level', (t) => {
   t.is(transform(warnError).level, testLevel)
 })
 
-each([noStackError, knownError], ({ title }, error) => {
-  test(`Does not use the stack if "stack" is false | ${title}`, (t) => {
-    t.is(transform(error).message, `${error.name}: ${error.message}`)
-  })
+test('Does not use the stack if "stack" is false', (t) => {
+  t.is(
+    transform(noStackError).message,
+    `${noStackError.name}: ${noStackError.message}`,
+  )
 })
 
-each([stackError, unknownError], ({ title }, error) => {
-  test(`Use the stack if "stack" is true | ${title}`, (t) => {
-    t.is(transform(error).message, error.stack)
-  })
+test('Use the stack by default', (t) => {
+  t.is(transform(knownError).message, knownError.stack)
 })
 
 each(['name', 'message'], ({ title }, propName) => {
   test(`Use the prepended stack if "stack" is true and it misses the name or message | ${title}`, (t) => {
-    const error = new TestError('message', { winston: { stack: true } })
+    const error = new TestError('message')
     // TODO: use string.replaceAll() after dropping support for Node <15.0.0
     error.stack = error.stack.replace(new RegExp(error[propName], 'gu'), '')
     t.is(

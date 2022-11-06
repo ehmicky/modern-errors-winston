@@ -155,15 +155,10 @@ Log [level](https://github.com/winstonjs/winston#logging-levels).
 
 ### stack
 
-_Type_: `boolean`
+_Type_: `boolean`\
+_Default_: `true`
 
 Whether to log the stack trace.
-
-By default, this is `true` if the error (or one of its
-[inner](https://github.com/ehmicky/modern-errors/README.md#-wrap-errors) errors)
-is
-[_unknown_](https://github.com/ehmicky/modern-errors/README.md#-unknown-errors),
-and `false` otherwise.
 
 ## Configuration
 

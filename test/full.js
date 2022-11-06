@@ -10,24 +10,28 @@ import {
   defaultLevel,
   testLevel,
   knownError,
-  unknownError,
   warnError,
   noStackError,
-  stackError,
 } from './helpers/main.js'
 
 const { transform } = AnyError.fullFormat()
 
-each([noStackError, knownError], ({ title }, error) => {
-  test(`Does not use the stack if "stack" is false | ${title}`, (t) => {
-    t.false('stack' in transform(error))
-  })
+test('Does not use the stack if "stack" is false', (t) => {
+  t.false('stack' in transform(noStackError))
 })
 
-each([unknownError, stackError], ({ title }, error) => {
-  test(`Use the stack if "stack" is true | ${title}`, (t) => {
-    t.is(transform(error).stack, error.stack)
+test('Use the stack by default', (t) => {
+  t.is(transform(knownError).stack, knownError.stack)
+})
+
+test('Default value for "stack" is deep', (t) => {
+  const error = new TestError('test', {
+    winston: { stack: false },
+    errors: [knownError],
   })
+  const object = transform(error)
+  t.is(object.stack, undefined)
+  t.is(object.errors[0].stack, error.errors[0].stack)
 })
 
 test('Can set other level', (t) => {
@@ -36,15 +40,6 @@ test('Can set other level', (t) => {
 
 test('Sets level to error by default', (t) => {
   t.is(transform(knownError).level, defaultLevel)
-})
-
-test('Default value for "stack" is deep', (t) => {
-  const inner = new TestError('inner', { errors: [unknownError] })
-  const error = new AnyError('test', { cause: '', errors: [inner] })
-  const object = transform(error)
-  t.is(object.stack, error.stack)
-  t.false('stack' in object.errors[0])
-  t.is(object.errors[0].errors[0].stack, error.errors[0].errors[0].stack)
 })
 
 each([Error, runInNewContext('Error')], ({ title }, ErrorClass) => {
@@ -59,12 +54,13 @@ test('Does not include constructorArgs', (t) => {
 })
 
 test('Serializes error', (t) => {
-  const { name, message } = knownError
+  const { name, message, stack } = knownError
   t.deepEqual(transform(knownError), {
     level: defaultLevel,
     [LEVEL]: defaultLevel,
     name,
     message,
+    stack,
   })
 })
 

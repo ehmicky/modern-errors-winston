@@ -27,8 +27,7 @@ const formatFunc = function (method, errorInfo, value) {
   deleteWinstonProps(value)
   const {
     error,
-    showStack,
-    options: { level, stack = showStack },
+    options: { level, stack = true },
   } = errorInfo(value)
   const object = method({ error, level, stack, errorInfo })
   return { ...object, [LEVEL]: object.level }
