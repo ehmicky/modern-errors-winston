@@ -1,3 +1,9 @@
+# 1.2.1
+
+## Bug fixes
+
+- Fix `stack` option's default value
+
 # 1.2.0
 
 ## Features
