@@ -52,7 +52,7 @@
   "dependencies": {
     "error-serializer": "^3.5.1",
     "filter-obj": "^5.1.0",
-    "is-error-instance": "^1.1.0",
+    "is-error-instance": "^1.2.0",
     "is-plain-obj": "^4.1.0",
     "logform": "^2.4.2",
     "safe-json-value": "^1.8.0",
