@@ -1,7 +1,7 @@
 import test from 'ava'
 import { each } from 'test-each'
 
-import { TestError, BaseError, testLevel } from './helpers/main.js'
+import { BaseError, testLevel, knownError } from './helpers/main.js'
 
 each(
   [
@@ -19,9 +19,8 @@ each(
 )
 
 test('Can pass options to static methods', (t) => {
-  const error = new TestError('test')
   t.is(
-    BaseError.shortFormat({ level: testLevel }).transform(error).level,
+    BaseError.shortFormat({ level: testLevel }).transform(knownError).level,
     testLevel,
   )
 })

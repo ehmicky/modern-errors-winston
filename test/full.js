@@ -5,7 +5,6 @@ import { each } from 'test-each'
 import { LEVEL } from 'triple-beam'
 
 import {
-  TestError,
   BaseError,
   defaultLevel,
   testLevel,
@@ -25,7 +24,7 @@ test('Use the stack by default', (t) => {
 })
 
 test('Default value for "stack" is deep', (t) => {
-  const error = new TestError('test', {
+  const error = new BaseError('test', {
     winston: { stack: false },
     errors: [knownError],
   })
@@ -45,12 +44,8 @@ test('Sets level to error by default', (t) => {
 each([Error, runInNewContext('Error')], ({ title }, ErrorClass) => {
   test(`Normalizes unknown error | ${title}`, (t) => {
     const error = new ErrorClass('test')
-    t.is(transform(error).name, 'UnknownError')
+    t.is(transform(error).name, BaseError.name)
   })
-})
-
-test('Does not include constructorArgs', (t) => {
-  t.false('constructorArgs' in transform(warnError))
 })
 
 test('Serializes error', (t) => {
@@ -65,21 +60,21 @@ test('Serializes error', (t) => {
 })
 
 test('Serializes error properties', (t) => {
-  const error = new TestError('test', { props: { prop: true } })
+  const error = new BaseError('test', { props: { prop: true } })
   t.true(transform(error).prop)
 })
 
 test('Ignore JSON-unsafe error properties', (t) => {
-  const error = new TestError('test', { props: { prop: 0n } })
+  const error = new BaseError('test', { props: { prop: 0n } })
   t.false('prop' in transform(error))
 })
 
 test('Serializes error properties deeply', (t) => {
-  const error = new TestError('test', { props: { prop: knownError } })
+  const error = new BaseError('test', { props: { prop: knownError } })
   t.is(transform(error).prop.message, knownError.message)
 })
 
 test('Serializes aggregate errors deeply', (t) => {
-  const error = new TestError('test', { errors: [knownError] })
+  const error = new BaseError('test', { errors: [knownError] })
   t.is(transform(error).errors[0].message, error.errors[0].message)
 })

@@ -1,21 +1,21 @@
-import modernErrors from 'modern-errors'
+import ModernError from 'modern-errors'
 import modernErrorsWinston from 'modern-errors-winston'
 import through from 'through2'
 import { MESSAGE } from 'triple-beam'
 import { createLogger, transports, format } from 'winston'
 
-export const BaseError = modernErrors([modernErrorsWinston])
-BaseError.subclass('UnknownError')
-export const TestError = BaseError.subclass('TestError')
+export const BaseError = ModernError.subclass('BaseError', {
+  plugins: [modernErrorsWinston],
+})
 
 export const defaultLevel = 'error'
 export const testLevel = 'warn'
 
-export const knownError = new TestError('test')
-export const warnError = new TestError('test', {
+export const knownError = new BaseError('test')
+export const warnError = new BaseError('test', {
   winston: { level: testLevel },
 })
-export const noStackError = new TestError('test', { winston: { stack: false } })
+export const noStackError = new BaseError('test', { winston: { stack: false } })
 
 export const shortLog = function (value) {
   shortLogger.error(value)

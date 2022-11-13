@@ -1,5 +1,4 @@
 import { serialize } from 'error-serializer'
-import { excludeKeys } from 'filter-obj'
 import isErrorInstance from 'is-error-instance'
 import isPlainObj from 'is-plain-obj'
 import safeJsonValue from 'safe-json-value'
@@ -25,16 +24,18 @@ const serializeError = function (value, errorInfo) {
     return value
   }
 
-  const omittedProps = getOmittedProps(value, errorInfo)
-  const object = serialize(value, { shallow: true })
-  return excludeKeys(object, omittedProps)
-}
-
-const getOmittedProps = function (value, errorInfo) {
   const {
-    options: { stack = true },
+    options: { stack: stackOpt = true },
   } = errorInfo(value)
-  return stack ? ['constructorArgs'] : ['constructorArgs', 'stack']
+  const object = serialize(value, { shallow: true })
+
+  if (stackOpt) {
+    return object
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  const { stack, ...objectA } = object
+  return objectA
 }
 
 const serializeRecurse = function (value, parents, errorInfo) {

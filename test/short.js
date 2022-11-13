@@ -2,7 +2,6 @@ import test from 'ava'
 import { each } from 'test-each'
 
 import {
-  TestError,
   BaseError,
   defaultLevel,
   testLevel,
@@ -34,7 +33,7 @@ test('Use the stack by default', (t) => {
 
 each(['name', 'message'], ({ title }, propName) => {
   test(`Use the prepended stack if "stack" is true and it misses the name or message | ${title}`, (t) => {
-    const error = new TestError('message')
+    const error = new BaseError('message')
     // TODO: use string.replaceAll() after dropping support for Node <15.0.0
     error.stack = error.stack.replace(new RegExp(error[propName], 'gu'), '')
     t.is(
