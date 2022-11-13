@@ -173,7 +173,7 @@ Whether to log the stack trace.
 ```js
 export const BaseError = ModernError.subclass('BaseError', {
   plugins: [modernErrorsWinston],
-  winston: { ...options },
+  winston: options,
 })
 ```
 
@@ -181,23 +181,21 @@ export const BaseError = ModernError.subclass('BaseError', {
   [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#options-1)
 
 ```js
-export const InputError = BaseError.subclass('InputError', {
-  winston: { ...options },
-})
+export const InputError = BaseError.subclass('InputError', { winston: options })
 ```
 
 - A specific error: second argument to
   [`new ErrorClass()`](https://github.com/ehmicky/modern-errors#options-3)
 
 ```js
-throw new InputError('...', { winston: { ...options } })
+throw new InputError('...', { winston: options })
 ```
 
 - A specific [`BaseError.fullFormat()`](#baseerrorfullformat) or
   [`BaseError.shortFormat()`](#baseerrorshortformat) call
 
 ```js
-BaseError.fullFormat(...args, { ...options })
+BaseError.fullFormat(options)
 ```
 
 # Related projects
