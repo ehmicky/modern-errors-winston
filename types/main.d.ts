@@ -51,7 +51,7 @@ declare const plugin: {
      * import { createLogger, transports, format } from 'winston'
      *
      * const logger = createLogger({
-     *   format: format.combine(AnyError.fullFormat(), format.json()),
+     *   format: format.combine(BaseError.fullFormat(), format.json()),
      *   transports: [new transports.Http(httpOptions)],
      * })
      *
@@ -88,7 +88,7 @@ declare const plugin: {
      * import { createLogger, transports, format } from 'winston'
      *
      * const logger = createLogger({
-     *   format: format.combine(AnyError.shortFormat(), format.cli()),
+     *   format: format.combine(BaseError.shortFormat(), format.cli()),
      *   transports: [new transports.Console()],
      * })
      *

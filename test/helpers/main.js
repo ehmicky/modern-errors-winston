@@ -4,9 +4,9 @@ import through from 'through2'
 import { MESSAGE } from 'triple-beam'
 import { createLogger, transports, format } from 'winston'
 
-export const AnyError = modernErrors([modernErrorsWinston])
-AnyError.subclass('UnknownError')
-export const TestError = AnyError.subclass('TestError')
+export const BaseError = modernErrors([modernErrorsWinston])
+BaseError.subclass('UnknownError')
+export const TestError = BaseError.subclass('TestError')
 
 export const defaultLevel = 'error'
 export const testLevel = 'warn'
@@ -32,7 +32,7 @@ const getShortLogger = function () {
     done(undefined, object)
   })
   return createLogger({
-    format: format.combine(AnyError.shortFormat(), format.simple()),
+    format: format.combine(BaseError.shortFormat(), format.simple()),
     transports: [new transports.Stream({ stream: shortStream })],
   })
 }
@@ -54,7 +54,7 @@ const getFullLogger = function () {
     done(undefined, object)
   })
   return createLogger({
-    format: format.combine(AnyError.fullFormat(), format.json()),
+    format: format.combine(BaseError.fullFormat(), format.json()),
     transports: [new transports.Stream({ stream: fullStream })],
   })
 }

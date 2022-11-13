@@ -6,7 +6,7 @@ import { each } from 'test-each'
 
 import {
   TestError,
-  AnyError,
+  BaseError,
   defaultLevel,
   testLevel,
   shortLog,
@@ -31,13 +31,13 @@ test.serial('Log stack-less errors with fullFormat', (t) => {
 each([Error, runInNewContext('Error'), TestError], ({ title }, ErrorClass) => {
   test.serial(`Log stack-full errors with shortFormat | ${title}`, (t) => {
     const error = new ErrorClass('test')
-    const { stack } = AnyError.normalize(error)
+    const { stack } = BaseError.normalize(error)
     t.is(shortLog(error), `${defaultLevel}: ${stack}`)
   })
 
   test.serial(`Log stack-full errors with fullFormat | ${title}`, (t) => {
     const error = new ErrorClass('test')
-    const { name, message, stack } = AnyError.normalize(error)
+    const { name, message, stack } = BaseError.normalize(error)
     t.deepEqual(fullLog(error), { level: defaultLevel, name, message, stack })
   })
 })

@@ -13,8 +13,8 @@
 [plugin](https://github.com/ehmicky/modern-errors#-plugins) for
 [Winston](https://github.com/winstonjs/winston).
 
-This adds [`AnyError.fullFormat()`](#anyerrorfullformat) and
-[`AnyError.shortFormat()`](#anyerrorshortformat) which return a
+This adds [`BaseError.fullFormat()`](#baseerrorfullformat) and
+[`BaseError.shortFormat()`](#baseerrorshortformat) which return a
 [format](https://github.com/winstonjs/winston/blob/master/README.md#formats) to
 improve error logging with Winston.
 
@@ -22,8 +22,8 @@ improve error logging with Winston.
 
 - Error [class/instance-specific](#configuration) log [level](#level) or
   [verbosity](#stack)
-- The [full format](#anyerrorfullformat) includes all properties
-- The [short format](#anyerrorshortformat) includes only the error's name,
+- The [full format](#baseerrorfullformat) includes all properties
+- The [short format](#baseerrorshortformat) includes only the error's name,
   message and stack
 - Prevents Winston from modifying the error instance
 - Works with
@@ -38,18 +38,18 @@ improve error logging with Winston.
 import modernErrors from 'modern-errors'
 import modernErrorsWinston from 'modern-errors-winston'
 
-export const AnyError = modernErrors([modernErrorsWinston])
+export const BaseError = modernErrors([modernErrorsWinston])
 // ...
-export const InputError = AnyError.subclass('InputError')
+export const InputError = BaseError.subclass('InputError')
 ```
 
-Using the [full format](#anyerrorfullformat) with Winston.
+Using the [full format](#baseerrorfullformat) with Winston.
 
 ```js
 import { createLogger, transports, format } from 'winston'
 
 const logger = createLogger({
-  format: format.combine(AnyError.fullFormat(), format.json()),
+  format: format.combine(BaseError.fullFormat(), format.json()),
   transports: [new transports.Http(httpOptions)],
 })
 
@@ -66,13 +66,13 @@ logger.error(error)
 // }
 ```
 
-Using the [short format](#anyerrorshortformat) with Winston.
+Using the [short format](#baseerrorshortformat) with Winston.
 
 ```js
 import { createLogger, transports, format } from 'winston'
 
 const logger = createLogger({
-  format: format.combine(AnyError.shortFormat(), format.cli()),
+  format: format.combine(BaseError.shortFormat(), format.cli()),
   transports: [new transports.Console()],
 })
 
@@ -110,7 +110,7 @@ _Type_: `Plugin`
 Plugin object to
 [pass to `modernErrors()`](https://github.com/ehmicky/modern-errors#adding-plugins).
 
-## AnyError.fullFormat()
+## BaseError.fullFormat()
 
 _Return value_: `Format`
 
@@ -126,7 +126,7 @@ logs all error properties, making it useful with
 Errors should be logged using
 [`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
 
-## AnyError.shortFormat()
+## BaseError.shortFormat()
 
 _Return value_: `Format`
 
@@ -168,14 +168,14 @@ Whether to log the stack trace.
   [`modernErrors()`](https://github.com/ehmicky/modern-errors#modernerrorsplugins-options)
 
 ```js
-export const AnyError = modernErrors(plugins, { winston: { ...options } })
+export const BaseError = modernErrors(plugins, { winston: { ...options } })
 ```
 
 - Any error of multiple classes: using
-  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#baseerrorsubclassname-options)
 
 ```js
-export const SharedError = AnyError.subclass('SharedError', {
+export const SharedError = BaseError.subclass('SharedError', {
   winston: { ...options },
 })
 
@@ -184,10 +184,10 @@ export const AuthError = SharedError.subclass('AuthError')
 ```
 
 - Any error of a specific class: second argument to
-  [`AnyError.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+  [`BaseError.subclass()`](https://github.com/ehmicky/modern-errors#baseerrorsubclassname-options)
 
 ```js
-export const InputError = AnyError.subclass('InputError', {
+export const InputError = BaseError.subclass('InputError', {
   winston: { ...options },
 })
 ```
@@ -198,11 +198,11 @@ export const InputError = AnyError.subclass('InputError', {
 throw new InputError('...', { winston: { ...options } })
 ```
 
-- A specific [`AnyError.fullFormat()`](#anyerrorfullformat) or
-  [`AnyError.shortFormat()`](#anyerrorshortformat) call
+- A specific [`BaseError.fullFormat()`](#baseerrorfullformat) or
+  [`BaseError.shortFormat()`](#baseerrorshortformat) call
 
 ```js
-AnyError.fullFormat(...args, { ...options })
+BaseError.fullFormat(...args, { ...options })
 ```
 
 # Related projects

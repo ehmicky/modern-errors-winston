@@ -1,7 +1,7 @@
 import test from 'ava'
 import { each } from 'test-each'
 
-import { TestError, AnyError, testLevel } from './helpers/main.js'
+import { TestError, BaseError, testLevel } from './helpers/main.js'
 
 each(
   [
@@ -13,7 +13,7 @@ each(
   ],
   ({ title }, winston) => {
     test(`Option are validated | ${title}`, (t) => {
-      t.throws(AnyError.subclass.bind(AnyError, 'OtherError', { winston }))
+      t.throws(BaseError.subclass.bind(BaseError, 'OtherError', { winston }))
     })
   },
 )
@@ -21,7 +21,7 @@ each(
 test('Can pass options to static methods', (t) => {
   const error = new TestError('test')
   t.is(
-    AnyError.shortFormat({ level: testLevel }).transform(error).level,
+    BaseError.shortFormat({ level: testLevel }).transform(error).level,
     testLevel,
   )
 })

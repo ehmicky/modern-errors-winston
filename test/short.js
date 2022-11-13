@@ -3,7 +3,7 @@ import { each } from 'test-each'
 
 import {
   TestError,
-  AnyError,
+  BaseError,
   defaultLevel,
   testLevel,
   knownError,
@@ -11,7 +11,7 @@ import {
   noStackError,
 } from './helpers/main.js'
 
-const { transform } = AnyError.shortFormat()
+const { transform } = BaseError.shortFormat()
 
 test('Sets level to error by default', (t) => {
   t.is(transform(knownError).level, defaultLevel)

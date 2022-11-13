@@ -6,7 +6,7 @@ import { LEVEL } from 'triple-beam'
 
 import {
   TestError,
-  AnyError,
+  BaseError,
   defaultLevel,
   testLevel,
   knownError,
@@ -14,7 +14,7 @@ import {
   noStackError,
 } from './helpers/main.js'
 
-const { transform } = AnyError.fullFormat()
+const { transform } = BaseError.fullFormat()
 
 test('Does not use the stack if "stack" is false', (t) => {
   t.false('stack' in transform(noStackError))
