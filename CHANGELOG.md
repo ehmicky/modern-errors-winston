@@ -1,3 +1,8 @@
+# 2.2.0
+
+- Upgrade to the latest version of
+  [`error-serializer`](https://github.com/ehmicky/error-serializer)
+
 # 2.1.0
 
 ## Features
