@@ -65,7 +65,7 @@
     "through2": "^4.0.2"
   },
   "peerDependencies": {
-    "modern-errors": "^4.1.1",
+    "modern-errors": "^5.0.0-beta.0",
     "winston": "^3.8.2"
   },
   "engines": {
