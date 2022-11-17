@@ -35,12 +35,14 @@ improve error logging with Winston.
 [`modern-errors`](https://github.com/ehmicky/modern-errors).
 
 ```js
-import modernErrors from 'modern-errors'
+import ModernError from 'modern-errors'
 import modernErrorsWinston from 'modern-errors-winston'
 
-export const BaseError = modernErrors([modernErrorsWinston])
-// ...
+export const BaseError = ModernError.subclass('BaseError', {
+  plugins: [modernErrorsWinston],
+})
 export const InputError = BaseError.subclass('InputError')
+// ...
 ```
 
 Using the [full format](#baseerrorfullformat) with Winston.
@@ -108,7 +110,7 @@ not `require()`.
 _Type_: `Plugin`
 
 Plugin object to
-[pass to `modernErrors()`](https://github.com/ehmicky/modern-errors#adding-plugins).
+[pass to the `plugins` option of `ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#adding-plugins).
 
 ## BaseError.fullFormat()
 
@@ -165,26 +167,17 @@ Whether to log the stack trace.
 [Options](#options) can apply to (in priority order):
 
 - Any error: second argument to
-  [`modernErrors()`](https://github.com/ehmicky/modern-errors#modernerrorsplugins-options)
+  [`ModernError.subclass()`](https://github.com/ehmicky/modern-errors#options-1)
 
 ```js
-export const BaseError = modernErrors(plugins, { winston: { ...options } })
-```
-
-- Any error of multiple classes: using
-  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#baseerrorsubclassname-options)
-
-```js
-export const SharedError = BaseError.subclass('SharedError', {
+export const BaseError = ModernError.subclass('BaseError', {
+  plugins: [modernErrorsWinston],
   winston: { ...options },
 })
-
-export const InputError = SharedError.subclass('InputError')
-export const AuthError = SharedError.subclass('AuthError')
 ```
 
-- Any error of a specific class: second argument to
-  [`BaseError.subclass()`](https://github.com/ehmicky/modern-errors#baseerrorsubclassname-options)
+- Any error of a specific class (and its subclasses): second argument to
+  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#options-1)
 
 ```js
 export const InputError = BaseError.subclass('InputError', {
@@ -192,7 +185,8 @@ export const InputError = BaseError.subclass('InputError', {
 })
 ```
 
-- A specific error: second argument to the error's constructor
+- A specific error: second argument to
+  [`new ErrorClass()`](https://github.com/ehmicky/modern-errors#options-3)
 
 ```js
 throw new InputError('...', { winston: { ...options } })
