@@ -213,10 +213,12 @@ BaseError.fullFormat(options)
 
 - [`winston`](https://github.com/winstonjs/winston): A logger for just about
   everything
-- [`error-serializer`](https://github.com/ehmicky/error-serializer): Convert
-  errors to/from plain objects
 - [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors
   like it's 2023 🔮
+- [`winston-error-format`](https://github.com/ehmicky/winston-error-format): Log
+  errors with Winston
+- [`error-serializer`](https://github.com/ehmicky/error-serializer): Convert
+  errors to/from plain objects
 - [`modern-errors-cli`](https://github.com/ehmicky/modern-errors-cli): Handle
   errors in CLI modules
 - [`modern-errors-process`](https://github.com/ehmicky/modern-errors-process):
