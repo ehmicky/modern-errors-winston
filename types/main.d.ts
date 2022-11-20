@@ -1,6 +1,5 @@
-import type { Format } from 'logform'
-
 import type { Info } from 'modern-errors'
+import type { Format, Options as FormatOptions } from 'winston-error-format'
 
 /**
  * Winston format.
@@ -8,23 +7,9 @@ import type { Info } from 'modern-errors'
 export type { Format }
 
 /**
- * Options of `modern-errors-winston`
+ * `modern-errors-winston` options
  */
-export interface Options {
-  /**
-   * Log [level](https://github.com/winstonjs/winston#logging-levels).
-   *
-   * @default 'error'
-   */
-  readonly level?: string
-
-  /**
-   * Whether to log the stack trace.
-   *
-   * @default `true`
-   */
-  readonly stack?: boolean
-}
+export type Options = Omit<FormatOptions, 'transform'>
 
 /**
  * `modern-errors-winston` plugin (Node.js only).

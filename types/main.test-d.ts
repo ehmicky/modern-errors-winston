@@ -45,23 +45,6 @@ expectNotAssignable<Options>({ unknown: true })
 
 ModernError.subclass('TestError', {
   plugins: [modernErrorsWinston],
-  winston: { level: 'error' },
-})
-BaseError.fullFormat({ level: 'error' })
-BaseError.shortFormat({ level: 'error' })
-expectAssignable<Options>({ level: 'error' })
-expectError(
-  ModernError.subclass('TestError', {
-    plugins: [modernErrorsWinston],
-    winston: { level: true },
-  }),
-)
-expectError(BaseError.fullFormat({ level: true }))
-expectError(BaseError.shortFormat({ level: true }))
-expectNotAssignable<Options>({ level: true })
-
-ModernError.subclass('TestError', {
-  plugins: [modernErrorsWinston],
   winston: { stack: true },
 })
 BaseError.fullFormat({ stack: true })
