@@ -25,9 +25,10 @@ const serializeError = function (value, errorInfo) {
   }
 
   const {
+    error,
     options: { stack: stackOpt = true },
   } = errorInfo(value)
-  const object = serialize(value, { shallow: true })
+  const object = serialize(error, { shallow: true })
 
   if (stackOpt) {
     return object
