@@ -15,10 +15,11 @@
 
 This adds [`BaseError.fullFormat()`](#baseerrorfullformat) and
 [`BaseError.shortFormat()`](#baseerrorshortformat) which return a
-[format](https://github.com/winstonjs/winston/blob/master/README.md#formats) to
-improve error logging with Winston.
+[Winston format](https://github.com/winstonjs/winston/blob/master/README.md#formats).
 
 # Features
+
+Improved error logging with Winston:
 
 - Error [class/instance-specific](#configuration) log [level](#level) or
   [verbosity](#stack)
