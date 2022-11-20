@@ -13,6 +13,11 @@ export type Options = Omit<FormatOptions, 'transform'>
 
 /**
  * `modern-errors-winston` plugin (Node.js only).
+ *
+ * This adds `BaseError.fullFormat()` and `BaseError.shortFormat()` which
+ * return a
+ * [format](https://github.com/winstonjs/winston/blob/master/README.md#formats)
+ * to improve error logging with Winston.
  */
 declare const plugin: {
   name: 'winston'
@@ -29,7 +34,7 @@ declare const plugin: {
      * [HTTP](https://github.com/winstonjs/winston/blob/master/docs/transports.md#http-transport).
      *
      * Errors should be logged using
-     * [`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+     * [`logger.*(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
      *
      * @example
      * ```js
@@ -66,7 +71,7 @@ declare const plugin: {
      * [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
      *
      * Errors should be logged using
-     * [`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+     * [`logger.*(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
      *
      * @example
      * ```js

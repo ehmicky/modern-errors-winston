@@ -25,9 +25,20 @@ improve error logging with Winston.
 - The [full format](#baseerrorfullformat) includes all properties
 - The [short format](#baseerrorshortformat) includes only the error's name,
   message and stack
-- Prevents Winston from modifying the error instance
 - Works with
   [uncaught exceptions](https://github.com/winstonjs/winston#exceptions)
+
+Unlike Winston's default
+[error format](https://github.com/winstonjs/logform#errors):
+
+- The error `name` is logged
+- The full format logs nested errors, including
+  [`cause`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause)
+  and aggregate
+  [`errors`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError)
+- The full format is [JSON-safe](https://github.com/ehmicky/safe-json-value)
+- The short format optionally logs the stack trace
+- The error instance is not modified
 
 # Example
 
@@ -127,7 +138,7 @@ logs all error properties, making it useful with
 [HTTP](https://github.com/winstonjs/winston/blob/master/docs/transports.md#http-transport).
 
 Errors should be logged using
-[`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+[`logger.*(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
 
 ## BaseError.shortFormat()
 
@@ -143,18 +154,11 @@ error name, message and stack, making it useful with
 [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
 
 Errors should be logged using
-[`logger.error(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
+[`logger.*(error)`](https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger).
 
 ## Options
 
 _Type_: `object`
-
-### level
-
-_Type_: `string`\
-_Default_: `'error'`
-
-Log [level](https://github.com/winstonjs/winston#logging-levels).
 
 ### stack
 
@@ -162,6 +166,12 @@ _Type_: `boolean`\
 _Default_: `true`
 
 Whether to log the stack trace.
+
+### level
+
+_Type_: `string`
+
+Override the log [level](https://github.com/winstonjs/winston#logging-levels).
 
 ## Configuration
 
