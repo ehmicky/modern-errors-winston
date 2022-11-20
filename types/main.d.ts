@@ -66,7 +66,7 @@ declare const plugin: {
      * to [combine](https://github.com/winstonjs/winston#combining-formats) with
      * [`format.simple()`](https://github.com/winstonjs/logform#simple) or
      * [`format.cli()`](https://github.com/winstonjs/logform#cli). This logs
-     * only the error name, message and stack, making it useful with
+     * only the error `name`, `message` and `stack`, making it useful with
      * [transports](https://github.com/winstonjs/winston#transports) like the
      * [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
      *

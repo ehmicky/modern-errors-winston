@@ -24,8 +24,8 @@ Improved error logging with Winston:
 - Error [class/instance-specific](#configuration) log [level](#level) or
   [verbosity](#stack)
 - The [full format](#baseerrorfullformat) includes all properties
-- The [short format](#baseerrorshortformat) includes only the error's name,
-  message and stack
+- The [short format](#baseerrorshortformat) includes only the error's `name`,
+  `message` and `stack`
 - Works with
   [uncaught exceptions](https://github.com/winstonjs/winston#exceptions)
 
@@ -150,7 +150,7 @@ Returns a logger
 to [combine](https://github.com/winstonjs/winston#combining-formats) with
 [`format.simple()`](https://github.com/winstonjs/logform#simple) or
 [`format.cli()`](https://github.com/winstonjs/logform#cli). This logs only the
-error name, message and stack, making it useful with
+error `name`, `message` and `stack`, making it useful with
 [transports](https://github.com/winstonjs/winston#transports) like the
 [console](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
 

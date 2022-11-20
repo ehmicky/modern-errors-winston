@@ -1,3 +1,10 @@
+# 2.3.0
+
+## Features
+
+- Split core logic to it own library
+  [`winston-error-format`](https://github.com/ehmicky/winston-error-format)
+
 # 2.2.0
 
 ## Features
