@@ -4,7 +4,7 @@ import {
   validateOptions,
 } from 'winston-error-format'
 
-const getOptions = function (options) {
+const getOptions = function (options = {}) {
   validateOptions(options)
   return options
 }
@@ -26,7 +26,7 @@ const getErrorFormat = function (errorInfo, error) {
     options: { level, stack },
     error: errorA,
   } = errorInfo(error)
-  return { level, stack, normalize: () => errorA }
+  return { level, stack, transform: () => errorA }
 }
 
 const shortFormat = getFormat.bind(undefined, shortFormatLib)
