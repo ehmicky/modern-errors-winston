@@ -218,6 +218,8 @@ BaseError.fullFormat(options)
   stack traces
 - [`modern-errors-http`](https://github.com/ehmicky/modern-errors-http): Create
   HTTP error responses
+- [`modern-errors-switch`](https://github.com/ehmicky/modern-errors-switch):
+  Execute class-specific logic
 
 # Support
 
