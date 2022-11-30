@@ -7,7 +7,7 @@ import {
   defaultLevel,
   shortLog,
   fullLog,
-} from './helpers/main.js'
+} from './helpers/main.test.js'
 
 test('Options are validated', (t) => {
   t.throws(
