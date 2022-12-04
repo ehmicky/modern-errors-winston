@@ -1,13 +1,49 @@
 import test from 'ava'
+import ModernError from 'modern-errors'
+import modernErrorsWinston from 'modern-errors-winston'
 import { each } from 'test-each'
+import through from 'through2'
+import { MESSAGE } from 'triple-beam'
+import { createLogger, transports, format } from 'winston'
 
-import {
-  BaseError,
-  testLevel,
-  defaultLevel,
-  shortLog,
-  fullLog,
-} from './helpers/main.test.js'
+const testLevel = 'warn'
+const defaultLevel = 'error'
+
+const shortLog = function (value) {
+  // eslint-disable-next-line fp/no-let
+  let lastLog = ''
+  const stream = through.obj((object, encoding, done) => {
+    // eslint-disable-next-line fp/no-mutation
+    lastLog = object[MESSAGE]
+    done(undefined, object)
+  })
+  const logger = createLogger({
+    format: format.combine(BaseError.shortFormat(), format.simple()),
+    transports: [new transports.Stream({ stream })],
+  })
+  logger.error(value)
+  return lastLog
+}
+
+const fullLog = function (value) {
+  // eslint-disable-next-line fp/no-let
+  let lastLog = {}
+  const stream = through.obj((object, encoding, done) => {
+    // eslint-disable-next-line fp/no-mutation
+    lastLog = JSON.parse(object[MESSAGE])
+    done(undefined, object)
+  })
+  const logger = createLogger({
+    format: format.combine(BaseError.fullFormat(), format.json()),
+    transports: [new transports.Stream({ stream })],
+  })
+  logger.error(value)
+  return lastLog
+}
+
+const BaseError = ModernError.subclass('BaseError', {
+  plugins: [modernErrorsWinston],
+})
 
 test('Options are validated', (t) => {
   t.throws(
