@@ -1,11 +1,6 @@
 import ModernError from 'modern-errors'
 import modernErrorsWinston, { Options, Format } from 'modern-errors-winston'
-import {
-  expectType,
-  expectAssignable,
-  expectNotAssignable,
-  expectError,
-} from 'tsd'
+import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 import { createLogger } from 'winston'
 
 const BaseError = ModernError.subclass('BaseError', {
@@ -21,26 +16,30 @@ ModernError.subclass('TestError', {
 BaseError.fullFormat({})
 BaseError.shortFormat({})
 expectAssignable<Options>({})
-expectError(BaseError.fullFormat(undefined))
-expectError(BaseError.shortFormat(undefined))
+// @ts-expect-error
+BaseError.fullFormat(undefined)
+// @ts-expect-error
+BaseError.shortFormat(undefined)
 expectNotAssignable<Options>(undefined)
-expectError(
-  ModernError.subclass('TestError', {
-    plugins: [modernErrorsWinston],
-    winston: true,
-  }),
-)
-expectError(BaseError.fullFormat(true))
-expectError(BaseError.shortFormat(true))
+ModernError.subclass('TestError', {
+  plugins: [modernErrorsWinston],
+  // @ts-expect-error
+  winston: true,
+})
+// @ts-expect-error
+BaseError.fullFormat(true)
+// @ts-expect-error
+BaseError.shortFormat(true)
 expectNotAssignable<Options>(true)
-expectError(
-  ModernError.subclass('TestError', {
-    plugins: [modernErrorsWinston],
-    winston: { unknown: true },
-  }),
-)
-expectError(BaseError.fullFormat({ unknown: true }))
-expectError(BaseError.shortFormat({ unknown: true }))
+ModernError.subclass('TestError', {
+  plugins: [modernErrorsWinston],
+  // @ts-expect-error
+  winston: { unknown: true },
+})
+// @ts-expect-error
+BaseError.fullFormat({ unknown: true })
+// @ts-expect-error
+BaseError.shortFormat({ unknown: true })
 expectNotAssignable<Options>({ unknown: true })
 
 ModernError.subclass('TestError', {
@@ -50,14 +49,15 @@ ModernError.subclass('TestError', {
 BaseError.fullFormat({ stack: true })
 BaseError.shortFormat({ stack: true })
 expectAssignable<Options>({ stack: true })
-expectError(
-  ModernError.subclass('TestError', {
-    plugins: [modernErrorsWinston],
-    winston: { stack: 'true' },
-  }),
-)
-expectError(BaseError.fullFormat({ stack: 'true' }))
-expectError(BaseError.shortFormat({ stack: 'true' }))
+ModernError.subclass('TestError', {
+  plugins: [modernErrorsWinston],
+  // @ts-expect-error
+  winston: { stack: 'true' },
+})
+// @ts-expect-error
+BaseError.fullFormat({ stack: 'true' })
+// @ts-expect-error
+BaseError.shortFormat({ stack: 'true' })
 expectNotAssignable<Options>({ stack: 'true' })
 
 expectType<Format>(fullFormat)
