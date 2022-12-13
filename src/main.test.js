@@ -10,7 +10,7 @@ import modernErrorsWinston from 'modern-errors-winston'
 const testLevel = 'warn'
 const defaultLevel = 'error'
 
-const shortLog = function (value) {
+const shortLog = (value) => {
   // eslint-disable-next-line fp/no-let
   let lastLog = ''
   const stream = through.obj((object, encoding, done) => {
@@ -26,7 +26,7 @@ const shortLog = function (value) {
   return lastLog
 }
 
-const fullLog = function (value) {
+const fullLog = (value) => {
   // eslint-disable-next-line fp/no-let
   let lastLog = {}
   const stream = through.obj((object, encoding, done) => {

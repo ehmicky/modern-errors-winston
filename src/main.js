@@ -4,7 +4,7 @@ import {
   validateOptions,
 } from 'winston-error-format'
 
-const getOptions = function (options = {}) {
+const getOptions = (options = {}) => {
   validateOptions(options)
   return options
 }
@@ -17,11 +17,10 @@ const getOptions = function (options = {}) {
 //    format
 // We do not allow passing method options to static methods because they would
 // have higher priority than instance options, which is unexpected.
-const getFormat = function (formatLib, { errorInfo }) {
-  return formatLib(getErrorFormat.bind(undefined, errorInfo))
-}
+const getFormat = (formatLib, { errorInfo }) =>
+  formatLib(getErrorFormat.bind(undefined, errorInfo))
 
-const getErrorFormat = function (errorInfo, error) {
+const getErrorFormat = (errorInfo, error) => {
   const {
     options: { level, stack },
     error: errorA,
