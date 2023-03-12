@@ -54,7 +54,7 @@
     "winston-error-format": "^1.0.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^2.0.65",
+    "@ehmicky/dev-tasks": "^2.0.66",
     "test-each": "^5.7.1",
     "through2": "^4.0.2",
     "triple-beam": "^1.3.0"
