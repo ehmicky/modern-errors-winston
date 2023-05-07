@@ -1,11 +1,11 @@
 import test from 'ava'
 import ModernError from 'modern-errors'
+import modernErrorsWinston from 'modern-errors-winston'
 import { each } from 'test-each'
 import through from 'through2'
 import { MESSAGE } from 'triple-beam'
 import { createLogger, transports, format } from 'winston'
 
-import modernErrorsWinston from 'modern-errors-winston'
 
 const testLevel = 'warn'
 const defaultLevel = 'error'
