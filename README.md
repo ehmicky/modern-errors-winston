@@ -48,6 +48,7 @@ Unlike Winston's default
 
 ```js
 import ModernError from 'modern-errors'
+
 import modernErrorsWinston from 'modern-errors-winston'
 
 export const BaseError = ModernError.subclass('BaseError', {
