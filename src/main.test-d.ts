@@ -6,7 +6,6 @@ import modernErrorsWinston, {
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 import { createLogger } from 'winston'
 
-
 const BaseError = ModernError.subclass('BaseError', {
   plugins: [modernErrorsWinston],
 })

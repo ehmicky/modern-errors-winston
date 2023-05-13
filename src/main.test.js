@@ -6,7 +6,6 @@ import through from 'through2'
 import { MESSAGE } from 'triple-beam'
 import { createLogger, transports, format } from 'winston'
 
-
 const testLevel = 'warn'
 const defaultLevel = 'error'
 
