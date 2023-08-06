@@ -42,7 +42,10 @@
   ],
   "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/modern-errors-winston",
-  "repository": "ehmicky/modern-errors-winston",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehmicky/modern-errors-winston.git"
+  },
   "bugs": {
     "url": "https://github.com/ehmicky/modern-errors-winston/issues"
   },
