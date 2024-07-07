@@ -64,7 +64,7 @@
   },
   "peerDependencies": {
     "modern-errors": "^7.0.1",
-    "winston": "^3.13.0"
+    "winston": "^3.13.1"
   },
   "engines": {
     "node": ">=18.18.0"
