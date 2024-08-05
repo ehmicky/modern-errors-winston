@@ -120,7 +120,7 @@ separately.
 npm install winston
 ```
 
-This package works in Node.js >=18.20.0.
+This package works in Node.js >=18.18.0.
 
 This is an ES module. It must be loaded using
 [an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
