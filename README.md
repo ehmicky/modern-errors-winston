@@ -70,7 +70,7 @@ export const InputError = BaseError.subclass('InputError')
 Using the [full format](#baseerrorfullformat) with Winston.
 
 ```js
-import { createLogger, transports, format } from 'winston'
+import { createLogger, format, transports } from 'winston'
 
 const logger = createLogger({
   format: format.combine(BaseError.fullFormat(), format.json()),
@@ -93,7 +93,7 @@ logger.error(error)
 Using the [short format](#baseerrorshortformat) with Winston.
 
 ```js
-import { createLogger, transports, format } from 'winston'
+import { createLogger, format, transports } from 'winston'
 
 const logger = createLogger({
   format: format.combine(BaseError.shortFormat(), format.cli()),

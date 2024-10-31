@@ -3,7 +3,7 @@ import ModernError from 'modern-errors'
 import { each } from 'test-each'
 import through from 'through2'
 import { MESSAGE } from 'triple-beam'
-import { createLogger, transports, format } from 'winston'
+import { createLogger, format, transports } from 'winston'
 
 import modernErrorsWinston from 'modern-errors-winston'
 

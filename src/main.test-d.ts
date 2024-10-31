@@ -1,10 +1,10 @@
 import ModernError from 'modern-errors'
-import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
+import { expectAssignable, expectNotAssignable, expectType } from 'tsd'
 import { createLogger } from 'winston'
 
 import modernErrorsWinston, {
-  type Options,
   type Format,
+  type Options,
 } from 'modern-errors-winston'
 
 const BaseError = ModernError.subclass('BaseError', {

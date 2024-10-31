@@ -1,6 +1,6 @@
 import {
-  shortFormat as shortFormatLib,
   fullFormat as fullFormatLib,
+  shortFormat as shortFormatLib,
   validateOptions,
 } from 'winston-error-format'
 
