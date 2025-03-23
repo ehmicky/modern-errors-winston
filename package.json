@@ -54,7 +54,7 @@
     "lib": "src"
   },
   "dependencies": {
-    "winston-error-format": "^3.0.1"
+    "winston-error-format": "^3.0.2"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^3.0.33",
