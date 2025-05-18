@@ -65,7 +65,7 @@
     "triple-beam": "^1.4.1"
   },
   "peerDependencies": {
-    "modern-errors": "^7.0.3",
+    "modern-errors": "^7.1.0",
     "winston": "^3.17.0"
   },
   "engines": {
